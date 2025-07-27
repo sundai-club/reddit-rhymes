@@ -35,7 +35,9 @@ def compose_poem_with_claude(df):
 Rules:
 - Each line MUST be one complete comment from above
 - Do NOT modify the comments AT ALL
-- Arrange 8-16 of them into a rhyming poem (AABB, ABAB, or ABCB)
+- Arrange 8-16 of them into a rhyming poem
+- PRIORITIZE COUPLET RHYME (AABB pattern) - consecutive lines should rhyme
+- If perfect couplets aren't possible, then try ABAB or ABCB
 - Focus on rhythm and rhyme
 - Look for comments that end with similar sounds
 
