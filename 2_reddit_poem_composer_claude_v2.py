@@ -38,9 +38,9 @@ IMPORTANT RULES:
 - The poem should be 8-16 lines long
 
 POEM STRUCTURE PRIORITIES (in order):
-1. COUPLETS: 8-16 lines with AABB rhyme scheme (preferred)
+1. ALTERNATING: 8-16 lines with ABAB rhyme scheme (preferred!)
 2. BALLAD: 8-12 lines with ABAB or ABCB rhyme scheme
-3. ALTERNATING: 8-16 lines with ABAB rhyme scheme
+3. COUPLETS: 8-16 lines with AABB rhyme scheme
 
 SELECTION CRITERIA:
 - **MOST IMPORTANT**: Comments MUST rhyme based on the LAST WORD of each line
