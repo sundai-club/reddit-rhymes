@@ -119,7 +119,22 @@ def create_reddit_comment_card(comment_data, card_width=500, theme='dark'):
     username = comment_data['author']
     text = comment_data['text']
     timestamp = get_relative_time(comment_data['time'])
-    upvotes = comment_data.get('upvotes', 1)
+    # Generate random larger vote numbers for more realistic appearance
+    import random
+    upvotes = random.choice([
+        random.randint(1200, 2500),
+        random.randint(2500, 5000), 
+        random.randint(5000, 10000),
+        random.randint(10000, 25000),
+        random.randint(25000, 50000)
+    ])
+    # Add 'k' suffix for thousands
+    if upvotes >= 10000:
+        upvotes_display = f"{upvotes / 1000:.1f}k"
+    elif upvotes >= 1000:
+        upvotes_display = f"{upvotes / 1000:.1f}k" if upvotes % 1000 != 0 else f"{upvotes // 1000}k"
+    else:
+        upvotes_display = str(upvotes)
     
     # Calculate card dimensions - scaled up for larger cards
     padding = 50  # Was 40
@@ -209,7 +224,7 @@ def create_reddit_comment_card(comment_data, card_width=500, theme='dark'):
     arrow_spacing = 8  # Increased from 6
     
     # Calculate text metrics for alignment
-    vote_bbox = draw.textbbox((0, 0), str(upvotes), font=font_small)
+    vote_bbox = draw.textbbox((0, 0), upvotes_display, font=font_small)
     text_height = vote_bbox[3] - vote_bbox[1]
     vote_width = vote_bbox[2] - vote_bbox[0]
     
@@ -229,7 +244,7 @@ def create_reddit_comment_card(comment_data, card_width=500, theme='dark'):
     
     # Vote count - centered between arrows
     vote_x = upvote_x + arrow_width + arrow_spacing
-    draw.text((vote_x, button_baseline_y), str(upvotes), fill=secondary_color, font=font_small)
+    draw.text((vote_x, button_baseline_y), upvotes_display, fill=secondary_color, font=font_small)
     
     # Downvote arrow - positioned higher (closer to text center)
     downvote_x = vote_x + vote_width + arrow_spacing
