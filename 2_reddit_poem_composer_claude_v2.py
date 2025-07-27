@@ -43,6 +43,8 @@ POEM STRUCTURE PRIORITIES (in order):
 3. ALTERNATING: 8-16 lines with ABAB rhyme scheme
 
 SELECTION CRITERIA:
+- **MOST IMPORTANT**: Comments MUST rhyme based on the LAST WORD of each line
+- The ending sounds of lines are what create the rhyme (e.g., "cat/hat", "way/day", "time/rhyme")
 - Focus on RHYTHM and METER - select comments with similar syllable counts
 - Group comments that end with similar sounds (rhyming words)
 - Consider flow and rhythm when arranging lines
@@ -55,6 +57,8 @@ RETURN FORMAT:
 Arrange these comments into a rhyming poem. Return ONLY the comment numbers and text, one per line:
 5: He is smart
 12: This is unintelligible.
+3: Context engineering Vibe coding
+18: Una mezcla entre Efootball y Football Manager :D
 (etc.)
 
 This format helps me verify the poem visually while ensuring accurate matching."""
