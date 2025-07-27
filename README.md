@@ -6,6 +6,8 @@ Turn Reddit comments into rhyming poetry videos with AI.
 
 This project fetches Reddit comments, uses Claude AI to compose them into rhyming poems, and generates videos with comment screenshots, text-to-speech audio, and background video/music.
 
+[Example MP4 (download 23MB)](https://github.com/sundai-club/reddit-rhymes/raw/refs/heads/main/example-reddit-ArtificialInteligence.mp4)
+
 ## Setup
 
 1. Install dependencies:
