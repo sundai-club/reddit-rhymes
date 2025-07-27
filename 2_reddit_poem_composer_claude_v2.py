@@ -28,24 +28,33 @@ def compose_poem_with_claude(df):
     # Create prompt with comments included
     comments_list = '\n'.join([f'{i+1}. {comment}' for i, comment in enumerate(comments)])
     
-    prompt = f"""Here are Reddit comments. Create a rhyming poem using ONLY these exact comments as lines:
+    prompt = f"""Create a well-structured, rhyming poem by arranging these Reddit comments.
 
+IMPORTANT RULES:
+- Each line of the poem MUST be one complete comment from the list below
+- Do NOT modify, split, or combine comments
+- Do NOT add words or punctuation to the comments
+- Use ONLY the exact comments provided
+- The poem should be 8-16 lines long
+
+POEM STRUCTURE PRIORITIES (in order):
+1. COUPLETS: 8-16 lines with AABB rhyme scheme (preferred)
+2. BALLAD: 8-12 lines with ABAB or ABCB rhyme scheme
+3. ALTERNATING: 8-16 lines with ABAB rhyme scheme
+
+SELECTION CRITERIA:
+- Focus on RHYTHM and METER - select comments with similar syllable counts
+- Group comments that end with similar sounds (rhyming words)
+- Consider flow and rhythm when arranging lines
+- Create coherent meaning when possible
+
+Available Reddit comments:
 {comments_list}
 
-Rules:
-- Each line MUST be one complete comment from above
-- Do NOT modify the comments AT ALL
-- Arrange 8-16 of them into a rhyming poem
-- PRIORITIZE COUPLET RHYME (AABB pattern) - consecutive lines should rhyme
-- If perfect couplets aren't possible, then try ABAB or ABCB
-- Focus on rhythm and rhyme
-- Look for comments that end with similar sounds
-
-Return the poem as comment numbers followed by the comment text, one per line, in this format:
+RETURN FORMAT:
+Arrange these comments into a rhyming poem. Return ONLY the comment numbers and text, one per line:
 5: He is smart
 12: This is unintelligible.
-3: Context engineering Vibe coding
-18: Una mezcla entre Efootball y Football Manager :D
 (etc.)
 
 This format helps me verify the poem visually while ensuring accurate matching."""
