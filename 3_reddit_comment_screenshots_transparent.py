@@ -119,22 +119,10 @@ def create_reddit_comment_card(comment_data, card_width=500, theme='dark'):
     username = comment_data['author']
     text = comment_data['text']
     timestamp = get_relative_time(comment_data['time'])
-    # Generate random larger vote numbers for more realistic appearance
+    # Generate random vote numbers in a modest range
     import random
-    upvotes = random.choice([
-        random.randint(1200, 2500),
-        random.randint(2500, 5000), 
-        random.randint(5000, 10000),
-        random.randint(10000, 25000),
-        random.randint(25000, 50000)
-    ])
-    # Add 'k' suffix for thousands
-    if upvotes >= 10000:
-        upvotes_display = f"{upvotes / 1000:.1f}k"
-    elif upvotes >= 1000:
-        upvotes_display = f"{upvotes / 1000:.1f}k" if upvotes % 1000 != 0 else f"{upvotes // 1000}k"
-    else:
-        upvotes_display = str(upvotes)
+    upvotes = random.randint(10, 100)
+    upvotes_display = str(upvotes)
     
     # Calculate card dimensions - scaled up for larger cards
     padding = 50  # Was 40
