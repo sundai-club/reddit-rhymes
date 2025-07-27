@@ -1,0 +1,21 @@
+# Reddit API access
+praw>=7.7.0
+
+# Data manipulation
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Image processing
+Pillow>=10.0.0
+
+# Google Gemini AI
+google-generativeai>=0.3.0
+
+# Text-to-speech with Kokoro
+kokoro-onnx>=0.2.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# HTTP requests
+requests>=2.31.0
