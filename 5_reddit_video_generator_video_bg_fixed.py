@@ -183,12 +183,19 @@ def create_vertical_video_with_video_bg(csv_file, image_dir, audio_dir, backgrou
         # Output settings
         cmd.extend([
             '-c:v', 'libx264',
-            '-preset', 'fast',
-            '-crf', '23',
+            '-preset', 'slow',  # High quality preset
+            '-crf', '18',  # Even better quality (lower = better)
             '-pix_fmt', 'yuv420p',
+            '-g', '30',  # Keyframe interval
+            '-bf', '3',  # More B-frames for better quality
+            '-refs', '4',  # More reference frames
+            '-qmin', '10',  # Minimum quantizer
+            '-qmax', '51',  # Maximum quantizer
+            '-profile:v', 'high',  # H.264 high profile for better quality
+            '-level', '4.1',  # Compatibility level
             '-c:a', 'aac',
-            '-b:a', '192k',
-            '-ar', '44100',
+            '-b:a', '256k',  # Higher audio bitrate too
+            '-ar', '48000',  # Higher sample rate
             '-t', str(total_duration),
             '-movflags', '+faststart',
             output_video
