@@ -22,10 +22,8 @@ def compose_poem_with_claude(df):
     Use Claude Code CLI to compose a rhythmic poem from Reddit comments
     Each line should be one complete comment
     """
-    # Select a subset of comments for the poem
-    sample_size = min(len(df), 30)
-    sampled_df = df.sample(n=sample_size)
-    comments = sampled_df['text'].tolist()
+    # Use all available comments for the poem
+    comments = df['text'].tolist()
     
     # Create prompt with comments included
     comments_list = '\n'.join([f'{i+1}. {comment}' for i, comment in enumerate(comments)])
@@ -96,16 +94,16 @@ This format helps me verify the poem visually while ensuring accurate matching."
                 id_part = line.split(':')[0].strip()
                 if id_part.isdigit():
                     comment_id = int(id_part) - 1  # Convert to 0-based index
-                    if 0 <= comment_id < len(sampled_df):
+                    if 0 <= comment_id < len(df):
                         comment_ids.append(comment_id)
         
         print(f"\nExtracted {len(comment_ids)} comment IDs from Claude's response")
         
         if comment_ids:
             # Get the actual comments based on IDs
-            sampled_list = sampled_df.reset_index(drop=True)
+            df_reset = df.reset_index(drop=True)
             for comment_id in comment_ids:
-                poem_lines.append(sampled_list.iloc[comment_id])
+                poem_lines.append(df_reset.iloc[comment_id])
             
             # Create the poem text from selected comments
             poem_text = '\n'.join([row['text'] for row in poem_lines])
@@ -114,7 +112,7 @@ This format helps me verify the poem visually while ensuring accurate matching."
             print("\nWarning: Could not extract comment IDs from Claude's response")
             print("Trying to manually parse...")
             # Fallback: just take the first 8-12 comments that rhyme
-            poem_lines = find_rhyming_comments(sampled_df, 8, 12)
+            poem_lines = find_rhyming_comments(df, 8, 12)
             poem_text = '\n'.join([row['text'] for row in poem_lines])
         
         return poem_text, poem_lines
@@ -123,7 +121,7 @@ This format helps me verify the poem visually while ensuring accurate matching."
         print(f"Error generating poem: {str(e)}")
         # Fallback to algorithmic approach
         print("Falling back to algorithmic poem generation...")
-        poem_lines = find_rhyming_comments(sampled_df, 8, 12)
+        poem_lines = find_rhyming_comments(df, 8, 12)
         poem_text = '\n'.join([row['text'] for row in poem_lines])
         return poem_text, poem_lines
 
